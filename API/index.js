@@ -41,7 +41,7 @@ DB.model('Pet', new mongoose.Schema(
  * @param {mongoose.SchemaTypes.ObjectId} petId 
  * @returns {mongoose.Query}
  */
- function findOwner(petId) {
+ function findOwners(petId) {
   return DB.model('Owner').find({ownerPet: petId});
 }
 
