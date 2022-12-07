@@ -18,6 +18,8 @@ DB.model('Billing', new mongoose.Schema(
 
 DB.model('Owner', new mongoose.Schema(
   {
+    ownerFirstName: {type: String, required: true},
+    ownerLastName: {type: String, required: true},
     ownerAddress: {type: String, required: true},
     ownerPhone: {type: string, required: true},
     ownerEmail: {type: string, required: true},
