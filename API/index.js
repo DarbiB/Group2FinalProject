@@ -130,3 +130,48 @@ expressed.get('/ownersInvoices', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+expressed.post('/addInvoice', async (req, res) => {
+  try {
+    let {ownerId, hoursStayed, hourRate, amountOwed} = req.body;
+    let result = await DB.model('Billing').create([{
+      ownerId: ownerId,
+      hoursStayed: hoursStayed,
+      hourRate: hourRate,
+      amountOwed: amountOwed
+    }]);
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+expressed.post('/editInvoice', async (req, res) => {
+  try {
+    let {id, ownerId, hoursStayed, hourRate, amountOwed} = req.body,
+        updateData = {};
+
+    if (ownerId) updateData.ownerId = ownerId;
+    if (hoursStayed) updateData.hoursStayed = hoursStayed;
+    if (hourRate) updateData.hourRate = hourRate;
+    if (amountOwed) updateData.amountOwed = amountOwed;
+
+    let result = await DB.model('Billing').findByIdAndUpdate(id, updateData);
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+expressed.post('/deleteInvoice', async (req, res) => {
+  try {
+    let {id} = req.body;
+    await DB.model('Billing').remove({_id: id});
+    res.status(200).send('Deleted Invoice successfully');
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
