@@ -35,3 +35,41 @@ DB.model('Pet', new mongoose.Schema(
     petType: {type: String, required: true}
   }
 ));
+
+/**
+ * Gets the pets owner
+ * @param {mongoose.SchemaTypes.ObjectId} petId 
+ * @returns {mongoose.Query}
+ */
+ function findOwner(petId) {
+  return DB.model('Owner').find({ownerPet: petId});
+}
+
+/**
+ * Gets a list of pets belonging to the specified owner
+ * @param {mongoose.SchemaTypes.ObjectId} ownerId THe owners id
+ * @returns {mongoose.Query}
+ */
+function findPets(ownerId) {
+  return DB.model('Owner').findById(ownerId, 'ownerPet');
+}
+
+/**
+ * Links a pet to their owner
+ * @param {mongoose.SchemaTypes.ObjectId} petId The pet to link
+ * @param {mongoose.SchemaTypes.ObjectId} OwnerId The owner to link
+ * @returns {mongoose.Query}
+ */
+function linkToOwner(petId, OwnerId) {
+  return DB.model('Owner').findByIdAndUpdate(OwnerId, {$addToSet: {ownerPet: petId}});
+}
+
+/**
+ * Unlinks a pet from their owner
+ * @param {mongoose.SchemaTypes.ObjectId} petId The pet to link
+ * @param {mongoose.SchemaTypes.ObjectId} OwnerId The owner to link
+ * @returns {mongoose.Query}
+ */
+function unlinkOwner(ownerId, petId) {
+  return DB.model('Owner').findByIdAndUpdate(ownerId, {$pull: {ownerPet: petId}});
+}
