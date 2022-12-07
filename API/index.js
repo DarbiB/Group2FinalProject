@@ -1,4 +1,4 @@
-const DBURL = '';
+const DBURL = 'mongodb://localhost:27017/testG2Final';
 
 const mongoose = require('mongoose');
 const express = require('express');
@@ -21,8 +21,8 @@ DB.model('Owner', new mongoose.Schema(
     ownerFirstName: {type: String, required: true},
     ownerLastName: {type: String, required: true},
     ownerAddress: {type: String, required: true},
-    ownerPhone: {type: string, required: true},
-    ownerEmail: {type: string, required: true},
+    ownerPhone: {type: String, required: true},
+    ownerEmail: {type: String, required: true},
     ownerPet: [
       {type: mongoose.Schema.ObjectId, ref: 'Pet'}
     ]
@@ -36,40 +36,97 @@ DB.model('Pet', new mongoose.Schema(
   }
 ));
 
-/**
- * Gets the pets owner
- * @param {mongoose.SchemaTypes.ObjectId} petId 
- * @returns {mongoose.Query}
- */
- function findOwners(petId) {
-  return DB.model('Owner').find({ownerPet: petId});
-}
+let expressed = express();
 
-/**
- * Gets a list of pets belonging to the specified owner
- * @param {mongoose.SchemaTypes.ObjectId} ownerId THe owners id
- * @returns {mongoose.Query}
- */
-function findPets(ownerId) {
-  return DB.model('Owner').findById(ownerId, 'ownerPet');
-}
+expressed.use(express.json());
+expressed.listen(1200);
 
-/**
- * Links a pet to their owner
- * @param {mongoose.SchemaTypes.ObjectId} petId The pet to link
- * @param {mongoose.SchemaTypes.ObjectId} OwnerId The owner to link
- * @returns {mongoose.Query}
- */
-function linkToOwner(petId, OwnerId) {
-  return DB.model('Owner').findByIdAndUpdate(OwnerId, {$addToSet: {ownerPet: petId}});
-}
+// creating a pet with the option of linking them to an owner
+expressed.post('/addPet', async (req, res) => {
+  let {_id, petName, petType, ownerId} = req.body;
+  let data = {petName: petName, petType: petType};
+  if (_id) data._id = _id;
 
-/**
- * Unlinks a pet from their owner
- * @param {mongoose.SchemaTypes.ObjectId} petId The pet to link
- * @param {mongoose.SchemaTypes.ObjectId} OwnerId The owner to link
- * @returns {mongoose.Query}
- */
-function unlinkOwner(ownerId, petId) {
-  return DB.model('Owner').findByIdAndUpdate(ownerId, {$pull: {ownerPet: petId}});
-}
+  try {
+    // adding the pet
+    let result = await (DB.model('Pet').create([data])), resBody = 'Created: ' + JSON.stringify(result);
+
+    // if an owner was provided add the owner to the pet
+    if (ownerId && result.length === 1) {
+      try {
+          await linkToOwner(result[0]._id, ownerId);
+          resBody += ', linked to ' + ownerId;
+      } catch (err) {
+        console.log(err);
+        resBody += ', failed to link to ' + ownerId;
+      }
+    }
+
+    res.status(200).send(resBody);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+// linking the pet to an owner
+expressed.post('/linkOwner', async (req, res) => {
+  let {petId, ownerId} = req.body;
+  try {
+    let result = await DB.model('Owner').findByIdAndUpdate(ownerId, {$addToSet: {ownerPet: petId}});
+
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+expressed.post('/deletePet', async (req, res) => {
+  try {
+    let petId = req.body.petId;
+    // removing the pet from all owners
+    await DB.model('Owner').updateMany({ownerPet: petId}, {$pull: {ownerPet: petId}});
+
+    // removing the pet
+    await DB.model('Pet').findByIdAndRemove(petId);
+    res.status(200).send('successfully removed pet');
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+expressed.post('/unlinkOwner', async (req, res) => {
+  try {
+    let {petId, ownerId} = req.body;
+    let result = await DB.model('Owner').updateOne({ownerId: ownerId}, {$pull: {ownerPet: petId}});
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+})
+
+// gets all the pets for the given owner
+expressed.get('/ownersPets', async (req, res) => {
+  try {
+    let ownerId = req.body.id;
+    let result = await DB.model('Owner').findById(ownerId, {ownerPet}).populate('ownerPet');
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+expressed.get('/ownersInvoices', async (req, res) => {
+  try {
+    let ownerId = req.body.id;
+    let result = await DB.model('Billing').find({ownerId: ownerId});
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
