@@ -21,6 +21,9 @@ DB.model('Owner', new mongoose.Schema(
     ownerFirstName: {type: String, required: true},
     ownerLastName: {type: String, required: true},
     ownerAddress: {type: String, required: true},
+    ownerCity: {type: String, required: true},
+    ownerState: {type: String, required: true},
+    ownerZip: {type: String, required: true},
     ownerPhone: {type: String, required: true},
     ownerEmail: {type: String, required: true},
     ownerPet: [
