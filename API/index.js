@@ -34,8 +34,7 @@ DB.model('Owner', new mongoose.Schema(
 
 DB.model('Pet', new mongoose.Schema(
   {
-    petName: {type: String, required: true},
-    petType: {type: String, required: true}
+    petName: {type: String, required: true}
   }
 ));
 
@@ -57,7 +56,7 @@ expressed.post('/addPet', async (req, res) => {
     // if an owner was provided add the owner to the pet
     if (ownerId && result.length === 1) {
       try {
-          await linkToOwner(result[0]._id, ownerId);
+          await DB.model('Owner').findByIdAndUpdate(ownerId, {$addToSet: {ownerPet: petId}});
           resBody += ', linked to ' + ownerId;
       } catch (err) {
         console.log(err);
