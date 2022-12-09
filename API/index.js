@@ -200,3 +200,50 @@ expressed.post('/deleteInvoice', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+
+//Add owner
+expressed.post('/addOwner', async (req,res) =>{
+  try{
+      let {firstName, lastName, ownerAddress, ownerPhone, ownerEmail} = req.body;
+      let result = await DB.model('Owner').create([{
+          lastName: lastName,
+          firstName: firstName,
+          ownerAddress: ownerAddress,
+          ownerPhone: ownerPhone,
+          ownerEmail: ownerEmail,
+
+      }]);
+      res.status(200).json(result);
+      } catch(err){
+        console.log(err);
+      res.status(400).json(err);      
+      }
+    });
+
+  
+//Edit Pet Name by ID
+expressed.post('/editPetNameById', async (req,res)=>{
+  try{
+      let pet = await DB.model('Pet').updateOne({_id: req.body.id}
+          ,{
+              petName: req.body.petName
+          },{upsert: true});
+          
+      if(pet)
+      {
+          res.status(200).json("{message: Pet Name Edited}");       
+      }
+      else{
+          res.status(200).json("{message: No Name Changed}");
+      }
+  }
+  catch{
+      return res.status(500).json("{message: Failed to edit name}");
+  }
+
+});
+
+
+  
+
