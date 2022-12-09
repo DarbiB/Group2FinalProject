@@ -1,4 +1,4 @@
-const DBURL = 'mongodb://localhost:27017/testG2Final';
+const DBURL = 'mongodb+srv://admin:admin@cluster0.bhg4ucp.mongodb.net/testG2Final?retryWrites=true&w=majority';
 
 const mongoose = require('mongoose');
 const express = require('express');
@@ -62,6 +62,7 @@ expressed.post('/editOwnerById', async (req, res) => {
 
     res.status(200).json(result);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 });
@@ -100,6 +101,16 @@ expressed.post('/linkOwner', async (req, res) => {
   try {
     let result = await DB.model('Owner').findByIdAndUpdate(ownerId, {$addToSet: {ownerPet: petId}});
 
+    res.status(200).json(result);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+});
+
+expressed.get('/getPetsOwners', async (req, res) => {
+  try {
+    let result = await DB.model('Owner').find({ownerPet: req.body.petId});
     res.status(200).json(result);
   } catch (err) {
     console.log(err);
@@ -217,11 +228,11 @@ expressed.post('/addOwner', async (req,res) =>{
       res.status(200).json(result);
       } catch(err){
         console.log(err);
-      res.status(400).json(err);      
+      res.status(400).json(err);
       }
     });
 
-  
+
 //Edit Pet Name by ID
 expressed.post('/editPetNameById', async (req,res)=>{
   try{
@@ -229,10 +240,10 @@ expressed.post('/editPetNameById', async (req,res)=>{
           ,{
               petName: req.body.petName
           },{upsert: true});
-          
+
       if(pet)
       {
-          res.status(200).json("{message: Pet Name Edited}");       
+          res.status(200).json("{message: Pet Name Edited}");
       }
       else{
           res.status(200).json("{message: No Name Changed}");
@@ -243,7 +254,3 @@ expressed.post('/editPetNameById', async (req,res)=>{
   }
 
 });
-
-
-  
-
