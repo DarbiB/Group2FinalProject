@@ -216,16 +216,16 @@ expressed.post('/deleteInvoice', async (req, res) => {
 //Add owner
 expressed.post('/addOwner', async (req,res) =>{
   try{
-      let {firstName, lastName, ownerAddress, ownerPhone, ownerEmail} = req.body;
+      let {ownerAddress, ownerCity, ownerEmail, ownerFName, ownerLName, ownerPhone, ownerState, ownerZip } = req.body;
       let result = await DB.model('Owner').create([{
-          ownerFirstName: firstName,
-          ownerLastName: lastName,
           ownerAddress: ownerAddress,
           ownerCity: ownerCity,
-          ownerState: ownerState,
-          ownerZip: ownerZip,
-          ownerPhone: ownerPhone,
           ownerEmail: ownerEmail,
+          ownerFName: ownerFName,
+          ownerLName: ownerLName,
+          ownerPhone: ownerPhone,
+          ownerState: ownerState,
+          ownerZip: ownerZip
 
       }]);
       res.status(200).json(result);
