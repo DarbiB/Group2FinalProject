@@ -218,16 +218,18 @@ expressed.post('/addOwner', async (req,res) =>{
   try{
       let {firstName, lastName, ownerAddress, ownerPhone, ownerEmail} = req.body;
       let result = await DB.model('Owner').create([{
-          lastName: lastName,
-          firstName: firstName,
+          ownerFirstName: firstName,
+          ownerLastName: lastName,
           ownerAddress: ownerAddress,
+          ownerCity: ownerCity,
+          ownerState: ownerState,
+          ownerZip: ownerZip,
           ownerPhone: ownerPhone,
           ownerEmail: ownerEmail,
 
       }]);
       res.status(200).json(result);
       } catch(err){
-        console.log(err);
       res.status(400).json(err);
       }
     });
@@ -254,3 +256,41 @@ expressed.post('/editPetNameById', async (req,res)=>{
   }
 
 });
+
+
+//Get all pets
+expressed.get('/getAllPets',  async (req,res) =>{
+  try{
+      let pet = await DB.model('Pet').find({}).lean();
+      return res.status(200).json({"Pet" : pet});
+  }
+  catch{
+      return res.status(500).json("(message: Failed to access pet data)");
+  }
+});
+
+
+//Get all owners
+expressed.get('/getAllOwners',  async (req,res) =>{
+  try{
+      let owner = await DB.model('Owner').find({}).lean();
+      return res.status(200).json({"Owner" : owner});
+  }
+  catch{
+      return res.status(500).json("(message: Failed to access owner data)");
+  }
+});
+
+
+//Get all invoices
+expressed.get('/getAllInvoices',  async (req,res) =>{
+  try{
+      let billing = await DB.model('Billing').find({}).lean();
+      return res.status(200).json({"Billing" : billing});
+  }
+  catch{
+      return res.status(500).json("(message: Failed to access billing data)");
+  }
+});
+
+
