@@ -13,7 +13,7 @@ DB.model('Billing', new mongoose.Schema(
     hoursStayed: {type: Number, required: true, default: 0},
     hourRate: {type: Number, required: true, default: 20},
     amountOwed: {type: Number, required: true, default: 0}
-  }
+  }, {collection: 'Billing'}
 ));
 
 DB.model('Owner', new mongoose.Schema(
@@ -29,13 +29,13 @@ DB.model('Owner', new mongoose.Schema(
     ownerPet: [
       {type: mongoose.Schema.ObjectId, ref: 'Pet'}
     ]
-  }
+  }, {collection: 'Owner'}
 ));
 
 DB.model('Pet', new mongoose.Schema(
   {
     petName: {type: String, required: true}
-  }
+  }, {collection: 'Pet'}
 ));
 
 let expressed = express();
@@ -292,5 +292,3 @@ expressed.get('/getAllInvoices',  async (req,res) =>{
       return res.status(500).json("(message: Failed to access billing data)");
   }
 });
-
-
