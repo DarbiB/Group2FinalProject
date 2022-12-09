@@ -44,12 +44,12 @@ expressed.use(express.json());
 expressed.listen(1200);
 
 expressed.post('/editOwnerById', async (req, res) => {
-  let {ownerId: _id, ownerFName, ownerLName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
+  let {ownerId: _id, ownerFName: ownerFirstName, ownerLName: ownerLastName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
 
   let updateData = {};
 
-  if (ownerFirstName) updateData.ownerFName = ownerFName;
-  if (ownerLastName) updateData.ownerLName = ownerLName;
+  if (ownerFirstName) updateData.ownerFName = ownerFirstName;
+  if (ownerLastName) updateData.ownerLName = ownerLastName;
   if (ownerAddress) updateData.ownerAddress = ownerAddress;
   if (ownerCity) updateData.ownerCity = ownerCity;
   if (ownerState) updateData.ownerState = ownerState;
