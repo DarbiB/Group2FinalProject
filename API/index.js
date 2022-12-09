@@ -43,6 +43,29 @@ let expressed = express();
 expressed.use(express.json());
 expressed.listen(1200);
 
+expressed.post('/editOwnerById', async (req, res) => {
+  let {ownerId: _id, ownerFirstName, ownerLastName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
+
+  let updateData = {};
+
+  if (ownerFirstName) updateData.ownerFirstName = ownerFirstName;
+  if (ownerLastName) updateData.ownerLastName = ownerLastName;
+  if (ownerAddress) updateData.ownerAddress = ownerAddress;
+  if (ownerCity) updateData.ownerCity = ownerCity;
+  if (ownerState) updateData.ownerState = ownerState;
+  if (ownerZip) updateData.ownerZip = ownerZip;
+  if (ownerEmail) updateData.ownerEmail = ownerEmail;
+  if (ownerPhone) updateData.ownerPhone = ownerPhone;
+
+  try {
+    let result = await DB.model('Owner').findByIdAndUpdate(ownerId, updateData);
+
+    res.status(200).json(result);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
 // creating a pet with the option of linking them to an owner
 expressed.post('/addPet', async (req, res) => {
   let {_id, petName, ownerId} = req.body;
