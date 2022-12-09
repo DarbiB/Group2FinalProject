@@ -18,8 +18,8 @@ DB.model('Billing', new mongoose.Schema(
 
 DB.model('Owner', new mongoose.Schema(
   {
-    ownerFirstName: {type: String, required: true},
-    ownerLastName: {type: String, required: true},
+    ownerFName: {type: String, required: true},
+    ownerLName: {type: String, required: true},
     ownerAddress: {type: String, required: true},
     ownerCity: {type: String, required: true},
     ownerState: {type: String, required: true},
@@ -44,12 +44,12 @@ expressed.use(express.json());
 expressed.listen(1200);
 
 expressed.post('/editOwnerById', async (req, res) => {
-  let {ownerId: _id, ownerFirstName, ownerLastName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
+  let {ownerId: _id, ownerFName, ownerLName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
 
   let updateData = {};
 
-  if (ownerFirstName) updateData.ownerFirstName = ownerFirstName;
-  if (ownerLastName) updateData.ownerLastName = ownerLastName;
+  if (ownerFirstName) updateData.ownerFName = ownerFName;
+  if (ownerLastName) updateData.ownerLName = ownerLName;
   if (ownerAddress) updateData.ownerAddress = ownerAddress;
   if (ownerCity) updateData.ownerCity = ownerCity;
   if (ownerState) updateData.ownerState = ownerState;
