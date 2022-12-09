@@ -45,8 +45,8 @@ expressed.listen(1200);
 
 // creating a pet with the option of linking them to an owner
 expressed.post('/addPet', async (req, res) => {
-  let {_id, petName, petType, ownerId} = req.body;
-  let data = {petName: petName, petType: petType};
+  let {_id, petName, ownerId} = req.body;
+  let data = {petName: petName};
   if (_id) data._id = _id;
 
   try {
