@@ -6,21 +6,22 @@ import 'main.dart';
 // import 'editOwner.dart';
 
 class ViewBill extends StatefulWidget {
-  final String id;
+  final String id, ownerId;
   final int hoursStayed, hourRate, amountOwed;
 
   final BillingApi api = BillingApi();
 
-  ViewBill(this.id, this.hoursStayed, this.hourRate, this.amountOwed,
+  ViewBill(
+      this.id, this.hoursStayed, this.hourRate, this.amountOwed, this.ownerId,
       {super.key});
 
   @override
   State<ViewBill> createState() =>
-      _ViewBillState(id, hoursStayed, hourRate, amountOwed);
+      _ViewBillState(id, hoursStayed, hourRate, amountOwed, ownerId);
 }
 
 class _ViewBillState extends State<ViewBill> {
-  final String id;
+  final String id, ownerId;
   final int hoursStayed, hourRate, amountOwed;
   List owners = [];
   bool _loaded = false;
@@ -35,7 +36,8 @@ class _ViewBillState extends State<ViewBill> {
     });
   }
 
-  _ViewBillState(this.id, this.hoursStayed, this.hourRate, this.amountOwed);
+  _ViewBillState(
+      this.id, this.hoursStayed, this.hourRate, this.amountOwed, this.ownerId);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

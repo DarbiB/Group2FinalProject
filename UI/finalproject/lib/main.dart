@@ -80,8 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                                           invoice[
                                                               'hoursStayed'],
                                                           invoice['hourRate'],
-                                                          invoice[
-                                                              'amountOwed']))),
+                                                          invoice['amountOwed'],
+                                                          invoice['ownerId']))),
                                         },
                                     child: const ListTile(
                                         leading: CircleAvatar(
