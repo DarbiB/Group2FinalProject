@@ -7,14 +7,14 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Group 2 Final',
+      title: 'Group 2 Final | Doggie Dashboard',
       theme: ThemeData(
-        primarySwatch: Colors.red,
+        primarySwatch: Colors.blue,
       ),
       home: MyHomePage(),
     );
@@ -22,9 +22,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  /*
   final BillingApi api = BillingApi();
-  */
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -34,25 +32,21 @@ class _MyHomePageState extends State<MyHomePage> {
   List invoices = [];
   bool _loaded = false;
 
-  /*
-
   void initState() {
     super.initState();
-    widget.api.findInvoices().then((data) {
-      setState(() => {
-        invoices = data;
+    widget.api.getAllInvoices().then((invData) {
+      setState(() {
+        invoices = invData;
         _loaded = true;
       });
     });
   }
 
-  */
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Group 2 Final'),
+        title: const Text('Group 2 Final | Doggie Dashboard'),
       ),
       body: Center(
           child: _loaded
@@ -73,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         ...invoices
                             .map<Widget>((invoice) => Padding(
                                 padding:
-                                    const EdgeInsets.symmetric(vertical: 30),
+                                    const EdgeInsets.symmetric(vertical: 15),
                                 child: TextButton(
                                     onPressed: () => {
                                           Navigator.pop(context),
@@ -82,20 +76,24 @@ class _MyHomePageState extends State<MyHomePage> {
                                               MaterialPageRoute(
                                                   builder: (context) =>
                                                       ViewBill(
-                                                          invoice['_id']))),
+                                                          invoice['_id'],
+                                                          invoice[
+                                                              'hoursStayed'],
+                                                          invoice['hourRate'],
+                                                          invoice[
+                                                              'amountOwed']))),
                                         },
-                                    child: ListTile(
+                                    child: const ListTile(
                                         leading: CircleAvatar(
-                                          radius: 30,
-                                          child: Text(invoice['lname'],
-                                              style: const TextStyle(
-                                                  fontSize: 10)),
-                                        ),
+                                            radius: 30,
+                                            backgroundColor: Colors.green,
+                                            child: Text("Date of stay",
+                                                style:
+                                                    TextStyle(fontSize: 10))),
                                         title: Text(
-                                          (invoice['pname'] +
-                                              ' ' +
-                                              invoice['date']),
-                                          style: const TextStyle(fontSize: 25),
+                                          "Owner/s name" + "\n" + "Pets name",
+                                          style: TextStyle(
+                                              letterSpacing: 3, fontSize: 20),
                                         )))))
                             .toList(),
                       ],
