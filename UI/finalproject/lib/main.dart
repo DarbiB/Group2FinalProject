@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
         _loaded = true;
       });
     });
+
+    /*
     widget.api.getPetsOwners().then((ownerData) {
       setState(() {
         owners = ownerData;
@@ -52,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
         pets = petData;
       });
     });
+    */
   }
 
   @override
@@ -87,8 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ViewBill(
-                                                          ))),
+                                                      ViewBill())),
                                         },
                                     child: ListTile(
                                         leading: const CircleAvatar(
@@ -102,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               "\n" +
                                               "Pets name",
                                           style: const TextStyle(
-                                              letterSpacing: 3, fontSize: 20),
+                                              letterSpacing: 3, fontSize: 15),
                                         )))))
                             .toList(),
                       ],
