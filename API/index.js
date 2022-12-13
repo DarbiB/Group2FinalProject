@@ -43,6 +43,12 @@ let expressed = express();
 expressed.use(express.json());
 expressed.listen(1200);
 
+expressed.get('/', (req, res) => {
+  console.log('base get request: ' + req.url);
+  console.log('base get data: ' + JSON.stringify(req.body));
+  console.log('base get query: ' + JSON.stringify(req.query));
+})
+
 expressed.post('/editOwnerById', async (req, res) => {
   let {ownerId: _id, ownerFName: ownerFirstName, ownerLName: ownerLastName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
 
@@ -110,8 +116,8 @@ expressed.post('/linkOwner', async (req, res) => {
 
 expressed.get('/getPetsOwners', async (req, res) => {
   try {
-    let result = await DB.model('Owner').find({ownerPet: req.body.petId});
-    res.status(200).json(result);
+    let result = await DB.model('Owner').find({ownerPet: req.query.petId});
+    res.status(200).json({Owners: result});
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -145,11 +151,11 @@ expressed.post('/unlinkOwner', async (req, res) => {
 })
 
 // gets all the pets for the given owner
-expressed.get('/ownersPets', async (req, res) => {
+expressed.get('/getOwnersPets', async (req, res) => {
   try {
-    let ownerId = req.body.id;
+    let ownerId = req.query.id;
     let result = await DB.model('Owner').findById(ownerId, {ownerPet}).populate('ownerPet');
-    res.status(200).json(result);
+    res.status(200).json({Pets: result});
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -160,7 +166,7 @@ expressed.get('/ownersInvoices', async (req, res) => {
   try {
     let ownerId = req.body.id;
     let result = await DB.model('Billing').find({ownerId: ownerId});
-    res.status(200).json(result);
+    res.status(200).json({invoices: result});
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -209,6 +215,16 @@ expressed.post('/deleteInvoice', async (req, res) => {
     res.status(200).send('Deleted Invoice successfully');
   } catch (err) {
     res.status(400).json(err);
+  }
+});
+
+expressed.get('/getAllOwners',  async (req,res) =>{
+  try{
+      let owner = await DB.model('Owner').find({_id: req.query.ownerId}).lean();
+      return res.status(200).json({"Owner" : owner});
+  }
+  catch{
+      return res.status(500).json("(message: Failed to access owner data)");
   }
 });
 

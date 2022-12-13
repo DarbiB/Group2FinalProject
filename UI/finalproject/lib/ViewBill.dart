@@ -4,15 +4,18 @@ import 'package:flutter/material.dart';
 import 'api.dart';
 import 'main.dart';
 import 'editOwner.dart';
+import 'models/invoice.dart';
 
 class ViewBill extends StatefulWidget {
   //final String id, ownerId;
   //final int hoursStayed, hourRate, amountOwed;
+  final Billing invoice;
 
   final BillingApi api = BillingApi();
 
   ViewBill(
       //this.id, this.hoursStayed, this.hourRate, this.amountOwed, this.ownerId,
+      this.invoice,
       {super.key});
 
   @override
@@ -29,7 +32,7 @@ class _ViewBillState extends State<ViewBill> {
 
   void initState() {
     super.initState();
-    widget.api.getPetsOwners().then((data) {
+    widget.api.getOwnersPets(widget.invoice.ownerId).then((data) {
       setState(() {
         owners = data;
         _loaded = true;
