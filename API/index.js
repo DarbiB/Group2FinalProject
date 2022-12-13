@@ -308,3 +308,32 @@ expressed.get('/getAllInvoices',  async (req,res) =>{
       return res.status(500).json("(message: Failed to access billing data)");
   }
 });
+
+async function restoreDatabase() {
+  let fs = require('fs');
+  console.log('Restoring Billing');
+  await DB.model('Billing').deleteMany();
+  await DB.model('Billing').create(JSON.parse(fs.readFileSync(__dirname + '/backups/billingData.json', {encoding: 'utf8'})));
+
+  console.log('Restoring Pets');
+  await DB.model('Pet').deleteMany();
+  await DB.model('Pet').create(JSON.parse(fs.readFileSync(__dirname + '/backups/petData.json', {encoding: 'utf8'})));
+
+  console.log('Restoring Owners');
+  await DB.model('Owner').deleteMany();
+  await DB.model('Owner').create(JSON.parse(fs.readFileSync(__dirname + '/backups/ownerData.json', {encoding: 'utf8'})));
+
+  console.log('Done Restoring');
+}
+
+process.stdin.on('data', (data) => {
+  let commands = data.toString().split('\n');
+
+  for (let c of commands) {
+    switch (c.trim()) {
+      case 'restore':
+        restoreDatabase();
+        break;
+    }
+  }
+});
