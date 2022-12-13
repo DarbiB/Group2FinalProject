@@ -18,7 +18,6 @@ DB.model('Billing', new mongoose.Schema(
 
 DB.model('Owner', new mongoose.Schema(
   {
-    _id: {type: mongoose.SchemaTypes.ObjectId, required: true},
     ownerFName: {type: String, required: true},
     ownerLName: {type: String, required: true},
     ownerAddress: {type: String, required: true},
@@ -35,7 +34,6 @@ DB.model('Owner', new mongoose.Schema(
 
 DB.model('Pet', new mongoose.Schema(
   {
-    _id: {type: mongoose.SchemaTypes.ObjectId, required: true},
     petName: {type: String, required: true}
   }, {collection: 'Pet'}
 ));
