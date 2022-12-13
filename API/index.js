@@ -218,7 +218,7 @@ expressed.post('/deleteInvoice', async (req, res) => {
   }
 });
 
-expressed.get('/getAllOwners',  async (req,res) =>{
+expressed.get('/getOwner',  async (req,res) =>{
   try{
       let owner = await DB.model('Owner').find({_id: req.query.ownerId}).lean();
       return res.status(200).json({"Owner" : owner});
