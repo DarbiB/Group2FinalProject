@@ -1,0 +1,202 @@
+[
+  {
+    "hourRate": 20,
+    "_id": "639153e6360179067bcfaeea",
+    "amountOwed": 8,
+    "hoursRate": "4",
+    "hoursStayed": 2,
+    "ownerId": "63914727899ddc1a9bb26f34"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639153f5360179067bcfaeeb",
+    "amountOwed": 4,
+    "hoursRate": "4",
+    "hoursStayed": 1,
+    "ownerId": "63914ea9360179067bcfaed7"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639153fd360179067bcfaeec",
+    "amountOwed": 28,
+    "hoursRate": "4",
+    "hoursStayed": 7,
+    "ownerId": "63914f83360179067bcfaed8"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915408360179067bcfaeed",
+    "amountOwed": 24,
+    "hoursRate": "4",
+    "hoursStayed": 6,
+    "ownerId": "63914f8d360179067bcfaed9"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915415360179067bcfaeee",
+    "amountOwed": 16,
+    "hoursRate": "4",
+    "hoursStayed": 4,
+    "ownerId": "63914f95360179067bcfaeda"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915421360179067bcfaeef",
+    "amountOwed": 20,
+    "hoursRate": "4",
+    "hoursStayed": 5,
+    "ownerId": "63914fae360179067bcfaedb"
+  },
+  {
+    "hourRate": 20,
+    "_id": "6391542c360179067bcfaef0",
+    "amountOwed": 20,
+    "hoursRate": "4",
+    "hoursStayed": 5,
+    "ownerId": "63914fae360179067bcfaedb"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915437360179067bcfaef1",
+    "amountOwed": 20,
+    "hoursRate": "4",
+    "hoursStayed": 5,
+    "ownerId": "63914fae360179067bcfaedb"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915496360179067bcfaef2",
+    "amountOwed": 24,
+    "hoursRate": "4",
+    "hoursStayed": 6,
+    "ownerId": "63915001360179067bcfaee3"
+  },
+  {
+    "hourRate": 20,
+    "_id": "6391549e360179067bcfaef3",
+    "amountOwed": 12,
+    "hoursRate": "4",
+    "hoursStayed": 3,
+    "ownerId": "63914ffa360179067bcfaee2"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154c5360179067bcfaef4",
+    "amountOwed": 28,
+    "hoursRate": "4",
+    "hoursStayed": 7,
+    "ownerId": "63915007360179067bcfaee4"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154cf360179067bcfaef5",
+    "amountOwed": 16,
+    "hoursRate": "4",
+    "hoursStayed": 4,
+    "ownerId": "6391500c360179067bcfaee5"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154d7360179067bcfaef6",
+    "amountOwed": 16,
+    "hoursRate": "4",
+    "hoursStayed": 4,
+    "ownerId": "63914ff4360179067bcfaee1"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154e0360179067bcfaef7",
+    "amountOwed": 12,
+    "hoursRate": "4",
+    "hoursStayed": 3,
+    "ownerId": "63915015360179067bcfaee6"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154e8360179067bcfaef8",
+    "amountOwed": 12,
+    "hoursRate": "4",
+    "hoursStayed": 3,
+    "ownerId": "6391504a360179067bcfaee7"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154f1360179067bcfaef9",
+    "amountOwed": 12,
+    "hoursRate": "4",
+    "hoursStayed": 3,
+    "ownerId": "63915055360179067bcfaee8"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154f9360179067bcfaefa",
+    "amountOwed": 8,
+    "hoursRate": "4",
+    "hoursStayed": 2,
+    "ownerId": "6391505d360179067bcfaee9"
+  },
+  {
+    "hourRate": 20,
+    "_id": "639154ff360179067bcfaefb",
+    "amountOwed": 8,
+    "hoursRate": "4",
+    "hoursStayed": 2,
+    "ownerId": "63914fde360179067bcfaedf"
+  },
+  {
+    "hourRate": 20,
+    "_id": "6391552e360179067bcfaefc",
+    "amountOwed": 12,
+    "hoursRate": "4",
+    "hoursStayed": 3,
+    "ownerId": "63914fe8360179067bcfaee0"
+  },
+  {
+    "hourRate": 20,
+    "_id": "6391553e360179067bcfaefd",
+    "amountOwed": 20,
+    "hoursRate": "4",
+    "hoursStayed": 5,
+    "ownerId": "63914fde360179067bcfaedf"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915546360179067bcfaefe",
+    "amountOwed": 12,
+    "hoursRate": "4",
+    "hoursStayed": 3,
+    "ownerId": "63914fe8360179067bcfaee0"
+  },
+  {
+    "hourRate": 20,
+    "_id": "6391554e360179067bcfaeff",
+    "amountOwed": 8,
+    "hoursRate": "4",
+    "hoursStayed": 2,
+    "ownerId": "63914fbe360179067bcfaedc"
+  },
+  {
+    "hourRate": 20,
+    "_id": "63915557360179067bcfaf00",
+    "amountOwed": 4,
+    "hoursRate": "4",
+    "hoursStayed": 1,
+    "ownerId": "63914fca360179067bcfaedd"
+  },
+  {
+    "hourRate": 20,
+    "_id": "6391555d360179067bcfaf01",
+    "amountOwed": 4,
+    "hoursRate": "4",
+    "hoursStayed": 1,
+    "ownerId": "63914fd6360179067bcfaede"
+  },
+  {
+    "_id": "6397fcdf6952a3c7ae4cc5e9",
+    "ownerId": "6392a312417bb3c142b5b0b2",
+    "hoursStayed": 3,
+    "hourRate": 4,
+    "amountOwed": 12,
+    "__v": 0
+  }
+]
