@@ -1,5 +1,4 @@
-
-    "Owner": [
+[
         {
             "ownerId": "63914727899ddc1a9bb26f34",
             "petId": "63913e7823b4d1165efb9e91"
@@ -79,25 +78,25 @@
       {
           "ownerId": "6391505d360179067bcfaee9",
           "petId": "63914405360179067bcfaed1"
+      },
+      {
+          "ownerId": "6391500c360179067bcfaee5",
+          "petId": "6391446e360179067bcfaed2"
+      },
+      {
+          "ownerId": "63915015360179067bcfaee6",
+          "petId": "63914405360179067bcfaece"
+      },
+      {
+          "ownerId": "6391504a360179067bcfaee7",
+          "petId": "6391446e360179067bcfaed4"
+      },
+      {
+          "ownerId": "63915055360179067bcfaee8",
+          "petId": "6391446e360179067bcfaed5"
+      },
+      {
+          "ownerId": "6391505d360179067bcfaee9",
+          "petId": "6391446e360179067bcfaed6"
       }
   ]
-  {
-      "ownerId": "6391500c360179067bcfaee5",
-      "petId": "6391446e360179067bcfaed2"
-  },
-  {
-      "ownerId": "63915015360179067bcfaee6",
-      "petId": "63914405360179067bcfaece"
-  },
-  {
-      "ownerId": "6391504a360179067bcfaee7",
-      "petId": "6391446e360179067bcfaed4"
-  },
-  {
-      "ownerId": "63915055360179067bcfaee8",
-      "petId": "6391446e360179067bcfaed5"
-  },
-  {
-      "ownerId": "6391505d360179067bcfaee9",
-      "petId": "6391446e360179067bcfaed6"
-  }

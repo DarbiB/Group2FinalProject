@@ -292,3 +292,30 @@ expressed.get('/getAllInvoices',  async (req,res) =>{
       return res.status(500).json("(message: Failed to access billing data)");
   }
 });
+
+
+async function fixOwnerData() {
+  let data = require('./petownerlinking.json'), ownerPet = new Map(), entry;
+
+  // data to add
+  for (let i of data) {
+    entry = ownerPet.get(i.ownerId);
+    if (entry) {
+      entry.ownerPet.push(i.petId);
+    } else {
+      ownerPet.set(i.ownerId, {ownerPet: [i.petId]});
+    }
+  }
+
+  let model = DB.model('Owner');
+
+  // adding missing data.
+  for (let i of ownerPet) {
+    try {
+      await model.findByIdAndUpdate(i[0], i[1]);
+    } catch (err) {
+      console.log(err);
+      console.log('failed: {"ownerId": ' + i[0] + '", "ownerPet":' + JSON.stringify(i[1].ownerPet) + '}');
+    }
+  }
+}
