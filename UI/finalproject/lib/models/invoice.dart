@@ -9,7 +9,7 @@ class Billing {
       this.id, this.hoursStayed, this.hourRate, this.amountOwed, this.ownerId);
 
   factory Billing.fromJson(Map json) {
-    final id = json['id'].replaceAll('ObjectId(\"', '').replaceAll('\"', '');
+    final id = json['_id'].replaceAll('ObjectId(\"', '').replaceAll('\"', '');
     final hoursStayed = json['hoursStayed'];
     final hourRate = json['hourRate'];
     final amountOwed = json['amountOwed'];
