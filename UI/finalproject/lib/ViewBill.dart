@@ -62,10 +62,11 @@ class _ViewBillState extends State<ViewBill> {
                           border: Border.all(width: 10, color: Colors.grey),
                         ),
                         child: Column(
-                          children: [
-                            const Text("Invoice Data",
+                          children: const [
+                            Text("Invoice Data",
                                 style: TextStyle(
-                                    fontSize: 25, fontWeight: FontWeight.bold))
+                                    fontSize: 25, fontWeight: FontWeight.bold)),
+                            Text("Invoice ID\nHours Stayed\nHour Charge\nTotal")
                           ],
                         )),
                     Container(padding: const EdgeInsets.all(5)),
@@ -85,6 +86,8 @@ class _ViewBillState extends State<ViewBill> {
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   )),
+                              const Text(
+                                  "Owner Name\nOwner Address\nOwner City\nOwner Pet\nOwner Email"),
                               TextButton(
                                 onPressed: () => {
                                   Navigator.pop(context),

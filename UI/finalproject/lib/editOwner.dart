@@ -55,8 +55,9 @@ class _editOwnerState extends State<editOwner> {
       appBar: AppBar(
         title: const Text('Group 2 Final | Doggie Dashboard'),
       ),
-      body: Center(
-          child: Column(
+      body: SingleChildScrollView(
+          child: Center(
+              child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Padding(
@@ -65,14 +66,31 @@ class _editOwnerState extends State<editOwner> {
                 const Text("Edit Owner Information",
                     style:
                         TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                TextFormField(controller: fnameControl),
-                TextFormField(controller: lnameControl),
-                TextFormField(controller: addControl),
-                TextFormField(controller: cityControl),
-                TextFormField(controller: stateControl),
-                TextFormField(controller: zipControl),
-                TextFormField(controller: emailControl),
-                TextFormField(controller: phoneControl),
+                TextFormField(
+                  decoration: const InputDecoration(hintText: "First Name"),
+                  controller: fnameControl,
+                ),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "Last Name"),
+                    controller: lnameControl),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "Address"),
+                    controller: addControl),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "City"),
+                    controller: cityControl),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "State"),
+                    controller: stateControl),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "Zip"),
+                    controller: zipControl),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "Email"),
+                    controller: emailControl),
+                TextFormField(
+                    decoration: const InputDecoration(hintText: "Phone"),
+                    controller: phoneControl),
                 ElevatedButton(
                     onPressed: () => {
                           //edit line
@@ -80,7 +98,7 @@ class _editOwnerState extends State<editOwner> {
                     child: const Text("Confirm Changes"))
               ]))
         ],
-      )),
+      ))),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.home),
           onPressed: () => {

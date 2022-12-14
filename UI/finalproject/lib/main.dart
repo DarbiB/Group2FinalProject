@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'api.dart';
 import 'ViewBill.dart';
 import 'models/invoice.dart';
+import 'models/owner.dart';
 
 void main() {
   runApp(const MyApp());
@@ -91,7 +92,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                               context,
                                               MaterialPageRoute(
                                                   builder: (context) =>
-                                                      ViewBill(Billing.fromJson(invoice)))),
+                                                      ViewBill(Billing.fromJson(
+                                                          invoice)))),
                                         },
                                     child: ListTile(
                                         leading: const CircleAvatar(
