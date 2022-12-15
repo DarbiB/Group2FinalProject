@@ -27,7 +27,7 @@ class ViewBill extends StatefulWidget {
 class _ViewBillState extends State<ViewBill> {
   //final String id, ownerId;
   //final int hoursStayed, hourRate, amountOwed;
-  Map owner  = {};
+  Map owner = {};
   bool _loaded = false;
 
   void initState() {
@@ -66,7 +66,8 @@ class _ViewBillState extends State<ViewBill> {
                             Text("Invoice Data",
                                 style: TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold)),
-                            Text("${widget.invoice.id}\nHours Stayed: ${widget.invoice.hoursStayed}\nHour Charge: ${widget.invoice.hourRate}\nTotal: ${widget.invoice.amountOwed}")
+                            Text(
+                                "${widget.invoice.id}\nHours Stayed: ${widget.invoice.hoursStayed}\nHour Charge: ${widget.invoice.hourRate}\nTotal: ${widget.invoice.amountOwed}")
                           ],
                         )),
                     Container(padding: const EdgeInsets.all(5)),
@@ -86,15 +87,33 @@ class _ViewBillState extends State<ViewBill> {
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   )),
-                              Text(
-                                  owner['ownerFName'] + ' ' + owner['ownerLName'] + "\n" + owner['ownerAddress'] + "\n" + owner['ownerCity'] + "\n" + owner['ownerPet'][0]['petName'] + "\n" + owner['ownerEmail']),
+                              Text(owner['ownerFName'] +
+                                  ' ' +
+                                  owner['ownerLName'] +
+                                  "\n" +
+                                  owner['ownerAddress'] +
+                                  "\n" +
+                                  owner['ownerCity'] +
+                                  "\n" +
+                                  owner['ownerPet'][0]['petName'] +
+                                  "\n" +
+                                  owner['ownerEmail']),
                               TextButton(
                                 onPressed: () => {
                                   Navigator.pop(context),
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => editOwner()))
+                                          builder: (context) => editOwner(
+                                              owner['_id'],
+                                              owner['ownerFName'],
+                                              owner['ownerLName'],
+                                              owner['ownerAddress'],
+                                              owner['ownerCity'],
+                                              owner['ownerState'],
+                                              owner['ownerZip'],
+                                              owner['ownerEmail'],
+                                              owner['ownerPhone'])))
                                 },
                                 child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,

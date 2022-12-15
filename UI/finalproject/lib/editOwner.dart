@@ -4,41 +4,34 @@ import 'api.dart';
 import 'ViewBill.dart';
 
 class editOwner extends StatefulWidget {
-  //final String id, fname, lname, address, city, state, zip, email, phone;
+  final String id, fname, lname, address, city, state, zip, email, phone;
   final BillingApi api = BillingApi();
-  /*
+
   editOwner(this.id, this.fname, this.lname, this.address, this.city,
       this.state, this.zip, this.email, this.phone,
       {super.key});
-  */
 
   @override
   State<editOwner> createState() => _editOwnerState(
-      //id, fname, lname, address, city, state, zip, email, phone
-      );
+      id, fname, lname, address, city, state, zip, email, phone);
 }
 
 class _editOwnerState extends State<editOwner> {
-  //final String id, fname, lname, address, city, state, zip, email, phone;
+  final String id, fname, lname, address, city, state, zip, email, phone;
 
-  _editOwnerState(
-      //this.id, this.fname, this.lname, this.address, this.city,
-      //this.state, this.zip, this.email, this.phone
-      );
+  _editOwnerState(this.id, this.fname, this.lname, this.address, this.city,
+      this.state, this.zip, this.email, this.phone);
 
-  /*
   void _editOwnerInfo(
-      id, fname, lname, address, city, state, zip, email, phone
-      ) {
+      id, fname, lname, address, city, state, zip, email, phone) {
     setState(() {
-      widget.api.editOwner(id, fname, lname, address, city, state, zip, email, phone
-            );
+      widget.api
+          .editOwner(id, fname, lname, address, city, state, zip, email, phone);
       Navigator.pop(context);
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MyHomePage()));
     });
   }
-  */
 
   TextEditingController fnameControl = TextEditingController();
   TextEditingController lnameControl = TextEditingController();
@@ -93,7 +86,16 @@ class _editOwnerState extends State<editOwner> {
                     controller: phoneControl),
                 ElevatedButton(
                     onPressed: () => {
-                          //edit line
+                          _editOwnerInfo(
+                              widget.id,
+                              fnameControl.text,
+                              lnameControl.text,
+                              addControl.text,
+                              cityControl.text,
+                              stateControl.text,
+                              zipControl.text,
+                              emailControl.text,
+                              phoneControl.text)
                         },
                     child: const Text("Confirm Changes"))
               ]))
