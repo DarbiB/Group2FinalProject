@@ -11,6 +11,12 @@ class BillingApi {
     return response.data['Billing'];
   }
 
+  Future<List> getAllInvoiceAndPet() async {
+    final response = await _dio.get('/getAllInvoiceAndPet');
+
+    return response.data['Billing'];
+  }
+
   Future<List> getPetsOwners(String petId) async {
     final response = await _dio.get('/getPetsOwners', queryParameters: {"petId": petId} );
 
@@ -35,7 +41,6 @@ class BillingApi {
     return response.data['Pets'];
   }
 
-  /*
   Future<List> editOwner(String id, String fname, String lname, String address,
       String city, String state, String zip, String email, String phone) async {
     final response = await _dio.post('/editOwnerById', data: {
@@ -51,5 +56,4 @@ class BillingApi {
     });
     return response.data;
   }
-  */
 }

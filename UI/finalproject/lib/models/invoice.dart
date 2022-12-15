@@ -13,6 +13,7 @@ class Billing {
     final hoursStayed = json['hoursStayed'];
     final hourRate = json['hourRate'];
     final amountOwed = json['amountOwed'];
+
     final ownerId =
         json['ownerId'].replaceAll('ObjectId(\"', '').replaceAll('\"', '');
 

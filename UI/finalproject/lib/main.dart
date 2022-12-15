@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void initState() {
     super.initState();
-    widget.api.getAllInvoices().then((invData) {
+    widget.api.getAllInvoiceAndPet().then((invData) {
       setState(() {
         invoices = invData;
         _loaded = true;
@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                         title: Text(
                                           (invoice['ownerId']) +
                                               "\n" +
-                                              "Pets name",
+                                              (invoice['petName']),
                                           style: const TextStyle(
                                               letterSpacing: 3, fontSize: 15),
                                         )))))

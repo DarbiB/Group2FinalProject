@@ -50,7 +50,7 @@ expressed.get('/', (req, res) => {
 })
 
 expressed.post('/editOwnerById', async (req, res) => {
-  let {ownerId: _id, ownerFName: ownerFirstName, ownerLName: ownerLastName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
+  let {id: _id, ownerFName: ownerFirstName, ownerLName: ownerLastName, ownerAddress, ownerCity, ownerState, ownerZip, ownerPhone, ownerEmail} = req.body;
 
   let updateData = {};
 
@@ -64,7 +64,7 @@ expressed.post('/editOwnerById', async (req, res) => {
   if (ownerPhone) updateData.ownerPhone = ownerPhone;
 
   try {
-    let result = await DB.model('Owner').findByIdAndUpdate(ownerId, updateData);
+    let result = await DB.model('Owner').findByIdAndUpdate(_id, updateData);
 
     res.status(200).json(result);
   } catch (err) {
@@ -72,6 +72,26 @@ expressed.post('/editOwnerById', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+expressed.get('/getAllInvoiceAndPet', async (req, res) => {
+  try {
+    let invoice = await DB.model('Billing').find().populate({path: 'ownerId', populate: {path: 'ownerPet'}});
+    let body = [];
+    for (i of invoice) {
+      body.push({
+        _id: i._id,
+        ownerId: i.ownerId._id,
+        hoursStayed: i.hoursStayed,
+        hourRate: i.hourRate,
+        amountOwed: i.amountOwed,
+        petName: i.ownerId.ownerPet.length > 0 ? i.ownerId.ownerPet[0].petName: 'Unknown'
+      });
+    }
+    res.status(200).json({Billing: body});
+  } catch {
+    res.status(400).send();
+  }
+})
 
 // creating a pet with the option of linking them to an owner
 expressed.post('/addPet', async (req, res) => {

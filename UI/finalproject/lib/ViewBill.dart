@@ -62,11 +62,11 @@ class _ViewBillState extends State<ViewBill> {
                           border: Border.all(width: 10, color: Colors.grey),
                         ),
                         child: Column(
-                          children: const [
+                          children: [
                             Text("Invoice Data",
                                 style: TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold)),
-                            Text("Invoice ID\nHours Stayed\nHour Charge\nTotal")
+                            Text("${widget.invoice.id}\nHours Stayed: ${widget.invoice.hoursStayed}\nHour Charge: ${widget.invoice.hourRate}\nTotal: ${widget.invoice.amountOwed}")
                           ],
                         )),
                     Container(padding: const EdgeInsets.all(5)),
