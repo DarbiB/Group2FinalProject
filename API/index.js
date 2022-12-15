@@ -242,7 +242,7 @@ expressed.post('/deleteInvoice', async (req, res) => {
 
 expressed.get('/getOwner',  async (req,res) =>{
   try{
-      let owner = await DB.model('Owner').find({_id: req.query.ownerId}).populate('ownerPet');
+      let owner = await DB.model('Owner').findById(req.query.ownerId).populate('ownerPet');
       return res.status(200).json({"Owner" : owner});
   }
   catch{

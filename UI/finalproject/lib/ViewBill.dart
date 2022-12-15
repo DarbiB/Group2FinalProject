@@ -27,14 +27,14 @@ class ViewBill extends StatefulWidget {
 class _ViewBillState extends State<ViewBill> {
   //final String id, ownerId;
   //final int hoursStayed, hourRate, amountOwed;
-  List owners = [];
-  bool _loaded = true;
+  Map owner  = {};
+  bool _loaded = false;
 
   void initState() {
     super.initState();
-    widget.api.getOwnersPets(widget.invoice.ownerId).then((data) {
+    widget.api.getOwner(widget.invoice.ownerId).then((data) {
       setState(() {
-        owners = data;
+        owner = data;
         _loaded = true;
       });
     });
@@ -86,8 +86,8 @@ class _ViewBillState extends State<ViewBill> {
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   )),
-                              const Text(
-                                  "Owner Name\nOwner Address\nOwner City\nOwner Pet\nOwner Email"),
+                              Text(
+                                  owner['ownerFName'] + ' ' + owner['ownerLName'] + "\n" + owner['ownerAddress'] + "\n" + owner['ownerCity'] + "\n" + owner['ownerPet'][0]['petName'] + "\n" + owner['ownerEmail']),
                               TextButton(
                                 onPressed: () => {
                                   Navigator.pop(context),

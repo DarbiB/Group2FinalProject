@@ -23,8 +23,8 @@ class BillingApi {
     return response.data["Owners"];
   }
 
-  Future<List> getOwner(String ownerId) async {
-    final response = await _dio.get('/getPetsOwners', queryParameters: {"ownerId": ownerId} );
+  Future<Map> getOwner(String ownerId) async {
+    final response = await _dio.get('/getOwner', queryParameters: {"ownerId": ownerId} );
 
     return response.data["Owner"];
   }
