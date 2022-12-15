@@ -67,12 +67,12 @@ class _ViewBillState extends State<ViewBill> {
                                 style: TextStyle(
                                     fontSize: 25, fontWeight: FontWeight.bold)),
                             Text(
-                                "${widget.invoice.id}\nHours Stayed: ${widget.invoice.hoursStayed}\nHour Charge: ${widget.invoice.hourRate}\nTotal: ${widget.invoice.amountOwed}")
+                                "ID: ${widget.invoice.id}\nHours Stayed: ${widget.invoice.hoursStayed}\nHour Charge: ${widget.invoice.hourRate}\nTotal: ${widget.invoice.amountOwed}")
                           ],
                         )),
                     Container(padding: const EdgeInsets.all(5)),
                     Container(
-                        padding: const EdgeInsets.all(5),
+                        padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             border: Border.all(
                                 width: 10, color: Colors.lightGreen)),
@@ -87,17 +87,22 @@ class _ViewBillState extends State<ViewBill> {
                                         fontSize: 25,
                                         fontWeight: FontWeight.bold),
                                   )),
-                              Text(owner['ownerFName'] +
+                              Text('Name: ' +
+                                  owner['ownerFName'] +
                                   ' ' +
                                   owner['ownerLName'] +
-                                  "\n" +
+                                  "\nAddress: " +
                                   owner['ownerAddress'] +
-                                  "\n" +
+                                  ",\n" +
                                   owner['ownerCity'] +
-                                  "\n" +
-                                  owner['ownerPet'][0]['petName'] +
-                                  "\n" +
-                                  owner['ownerEmail']),
+                                  ', ' +
+                                  owner['ownerZip'] +
+                                  "\nPhone: " +
+                                  owner['ownerPhone'] +
+                                  "\nEmail: " +
+                                  owner['ownerEmail'] +
+                                  "\nPet Name: " +
+                                  owner['ownerPet'][0]['petName']),
                               TextButton(
                                 onPressed: () => {
                                   Navigator.pop(context),
