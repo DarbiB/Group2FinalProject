@@ -18,19 +18,22 @@ class BillingApi {
   }
 
   Future<List> getPetsOwners(String petId) async {
-    final response = await _dio.get('/getPetsOwners', queryParameters: {"petId": petId} );
+    final response =
+        await _dio.get('/getPetsOwners', queryParameters: {"petId": petId});
 
     return response.data["Owners"];
   }
 
   Future<Map> getOwner(String ownerId) async {
-    final response = await _dio.get('/getOwner', queryParameters: {"ownerId": ownerId} );
+    final response =
+        await _dio.get('/getOwner', queryParameters: {"ownerId": ownerId});
 
     return response.data["Owner"];
   }
 
   Future<List> getOwnersPets(String ownerId) async {
-    final response = await _dio.get('/getPetsOwners', queryParameters: {"ownerId": ownerId} );
+    final response =
+        await _dio.get('/getPetsOwners', queryParameters: {"ownerId": ownerId});
 
     return response.data["Pets"];
   }
@@ -45,8 +48,8 @@ class BillingApi {
       String city, String state, String zip, String email, String phone) async {
     final response = await _dio.post('/editOwnerById', data: {
       'id': id,
-      'ownerFirstName': fname,
-      'ownerLastName': lname,
+      'ownerFName': fname,
+      'ownerLName': lname,
       'ownerAddress': address,
       'ownerCity': city,
       'ownerState': state,
