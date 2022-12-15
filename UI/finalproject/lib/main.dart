@@ -103,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                                 style:
                                                     TextStyle(fontSize: 10))),
                                         title: Text(
-                                          (invoice['ownerId']) +
+                                          invoice['fname'] + ' ' + invoice['lname'] +
                                               "\n" +
                                               (invoice['petName']),
                                           style: const TextStyle(

@@ -84,7 +84,9 @@ expressed.get('/getAllInvoiceAndPet', async (req, res) => {
         hoursStayed: i.hoursStayed,
         hourRate: i.hourRate,
         amountOwed: i.amountOwed,
-        petName: i.ownerId.ownerPet.length > 0 ? i.ownerId.ownerPet[0].petName: 'Unknown'
+        petName: i.ownerId.ownerPet.length > 0 ? i.ownerId.ownerPet[0].petName: 'Unknown',
+        fname: i.ownerId.ownerFName,
+        lname: i.ownerId.ownerLName
       });
     }
     res.status(200).json({Billing: body});
@@ -240,7 +242,7 @@ expressed.post('/deleteInvoice', async (req, res) => {
 
 expressed.get('/getOwner',  async (req,res) =>{
   try{
-      let owner = await DB.model('Owner').find({_id: req.query.ownerId}).lean();
+      let owner = await DB.model('Owner').find({_id: req.query.ownerId}).populate('ownerPet');
       return res.status(200).json({"Owner" : owner});
   }
   catch{
