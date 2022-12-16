@@ -97,11 +97,9 @@ class _MyHomePageState extends State<MyHomePage> {
                                         },
                                     child: ListTile(
                                         leading: const CircleAvatar(
-                                            radius: 30,
-                                            backgroundColor: Colors.green,
-                                            child: Text("Date of stay",
-                                                style:
-                                                    TextStyle(fontSize: 10))),
+                                          radius: 30,
+                                          backgroundColor: Colors.green,
+                                        ),
                                         title: Text(
                                           'Owner: ' +
                                               invoice['fname'] +
