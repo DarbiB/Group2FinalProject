@@ -334,8 +334,14 @@ expressed.get('/getAllInvoices',  async (req,res) =>{
 async function restoreDatabase() {
   let fs = require('fs');
   console.log('Restoring Billing');
+  let data = JSON.parse(fs.readFileSync(__dirname + '/backups/billingData.json', {encoding: 'utf8'}));
+
+  for (let i of data) {
+    i.hourRate = 4;
+  }
+  console.log(data);
   await DB.model('Billing').deleteMany();
-  await DB.model('Billing').create(JSON.parse(fs.readFileSync(__dirname + '/backups/billingData.json', {encoding: 'utf8'})));
+  await DB.model('Billing').create(data);
 
   console.log('Restoring Pets');
   await DB.model('Pet').deleteMany();
