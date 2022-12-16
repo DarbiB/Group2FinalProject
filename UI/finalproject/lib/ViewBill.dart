@@ -59,8 +59,8 @@ class _ViewBillState extends State<ViewBill> {
                     Container(
                         padding: const EdgeInsets.all(15),
                         decoration: BoxDecoration(
-                          border: Border.all(width: 10, color: Colors.grey),
-                        ),
+                            border: Border.all(width: 10, color: Colors.cyan),
+                            borderRadius: BorderRadius.circular(25)),
                         child: Column(
                           children: [
                             Text("Invoice Data",
@@ -75,7 +75,8 @@ class _ViewBillState extends State<ViewBill> {
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
                             border: Border.all(
-                                width: 10, color: Colors.lightGreen)),
+                                width: 10, color: Colors.lightBlueAccent),
+                            borderRadius: BorderRadius.circular(25)),
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
