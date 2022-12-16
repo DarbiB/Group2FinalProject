@@ -83,11 +83,14 @@ class _MyHomePageState extends State<MyHomePage> {
                                                           invoice)))),
                                         },
                                     child: ListTile(
-                                        leading: const CircleAvatar(
-                                          radius: 30,
-                                          backgroundColor: Colors.green,
-                                        ),
-                                        title: Text(
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(25)),
+                                      // leading: const CircleAvatar(
+                                      //   radius: 30,
+                                      //   backgroundColor: Colors.green,
+                                      // ),
+                                      title: Text(
                                           'Owner: ' +
                                               invoice['fname'] +
                                               ' ' +
@@ -95,8 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                               "\nPet: " +
                                               (invoice['petName']),
                                           style: const TextStyle(
-                                              letterSpacing: 3, fontSize: 15),
-                                        )))))
+                                              letterSpacing: 3, fontSize: 15)),
+                                      tileColor: Colors.indigo,
+                                      textColor: Colors.white,
+                                    ))))
                             .toList(),
                       ],
                     ))
