@@ -44,19 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
         _loaded = true;
       });
     });
-
-    /*
-    widget.api.getPetsOwners().then((ownerData) {
-      setState(() {
-        owners = ownerData;
-      });
-    });
-    widget.api.getAllPets().then((petData) {
-      setState(() {
-        pets = petData;
-      });
-    });
-    */
   }
 
   @override
